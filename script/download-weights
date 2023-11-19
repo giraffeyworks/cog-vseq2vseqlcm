@@ -9,7 +9,8 @@ from diffusers.pipelines.stable_diffusion.safety_checker import (
 # append project directory to path so predict.py can be imported
 sys.path.append('.')
 
-from predict import MODEL_NAME, MODEL_CACHE
+MODEL_NAME = "SG161222/RealVisXL_V2.0"
+MODEL_CACHE = "./model-cache"
 
 # Make cache folder
 if not os.path.exists(MODEL_CACHE):
@@ -40,13 +41,6 @@ stable_diffusion_pipe = DiffusionPipeline.from_pretrained(
 )
 stable_diffusion_pipe.save_pretrained(MODEL_CACHE, safe_serialization=True)
 
-
-# safety checker
-safety = StableDiffusionSafetyChecker.from_pretrained(
-    "CompVis/stable-diffusion-safety-checker",
-    torch_dtype=torch.float16,
-)
-safety.save_pretrained("./safety-cache")
 
 pipe = TextToVideoSDPipeline.from_pretrained(
         "motexture/vseq2vseq",
