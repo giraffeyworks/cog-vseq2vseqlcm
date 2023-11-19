@@ -14,7 +14,7 @@ class Predictor(BasePredictor):
         os.makedirs("/root/.cache/huggingface/hub/")
         sys_cache = "/root/.cache/huggingface/hub/"
         local_sdxl = "/src/model-cache/"
-        sdxl_model = "models--hithere"
+        sdxl_model = "models--SG161222--RealVisXL_V2.0"
         vseq2vseq_model = "models--motexture--vseq2vseq"
         # Create a symlink to the 2 models
         os.system("ln -s "+local_sdxl+sdxl_model+" "+sys_cache+sdxl_model)
@@ -76,7 +76,7 @@ class Predictor(BasePredictor):
             "python", "/vseq2vseq/inference.py",
             "--prompt", prompt,
             "--model", "motexture/vseq2vseq",
-            "--model-2d", "hithere",
+            "--model-2d", "SG161222/RealVisXL_V2.0",
             "--guidance-scale", str(guidance_scale),
             "--image-guidance-scale", str(image_guidance_scale),
             "--fps", str(fps),
